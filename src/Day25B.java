@@ -7,7 +7,7 @@ public class Day25B {
         for (Employee x : a) {
             sum = sum + x.salary();
         }
-        return sum;//我在测试时GIT
+        return sum;
     }
 
     public static double bonusSum(ArrayList<Employee> a) {
