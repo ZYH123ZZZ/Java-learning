@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   40 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-└── week_5\   第五周  Day29 ~          4 个目录    8 个文件
+└── week_5\   第五周  Day29 ~          4 个目录    9 个文件
 ```
 
 **分周规则：按目录名里最小的那个 Day 号归周。**
@@ -110,7 +110,7 @@ archive\
 | `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 2 |
 | `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 3 |
 | `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 2 |
-| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 1 |
+| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 2 |
 
 ### `week_5\Day29总\` 内部
 
@@ -138,6 +138,7 @@ archive\
 | 子目录 | 文件 | 内容 |
 |---|---|---|
 | `Day32-0` | `Day32.java` | 字节流：`write(int)` 只取低 8 位、`write(byte[])` 写一块、`FileOutputStream(..., true)` 追加对比默认清空；`read()` 逐字节递进、`-1` 判结尾、`(char) b` 转字符；两处 `try-with-resources`；`copy(from, to)` 用 1024 块 + `write(buf, 0, n)`，实测复制 30,784,597 字节的 flac，源与目标字节数一字节不差 |
+| `Day32-1` | `Day32A.java` | 文件备份器综合题（11-03 下午，题目给出、含三处预警坑）：`backup(String fromDir, String toDir, String suffix)` 拆成方法，目标目录不存在先 `mkdir`；遍历后 `isFile() && endsWith(suffix)` 才走复制分支，`isDirectory` 算子目录、`!endsWith` 算后缀不符；双层 `try-with-resources` 内 2048 块循环 `write(buf, 0, n)`；四个计数器在 `while` 外（复制完成后才加）。实测 a.txt/b.txt/c.txt 三文件 `cmp` 逐字节一致，汇总 `共 3 个文件, 3534 字节`。**已知瑕疵（未改，不影响功能）**：L44-49 的 `OK/False` 打印写在循环末尾而非复制分支内，导致 `d.java`、`sub` 两个跳过项也各打一行 `False`，与题目「跳过的只记个数不打印」有出入 |
 
 
 
