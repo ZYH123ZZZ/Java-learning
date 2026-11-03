@@ -1,4 +1,4 @@
-# Java 代码归档（2026-10-01 ~ 2026-11-02）
+# Java 代码归档（2026-10-01 ~ 2026-11-03）
 
 **这里放的是"已经结课、不会再改"的代码。现在在写的东西放 `test\src\`。**
 
@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   40 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-└── week_5\   第五周  Day29 ~          3 个目录    7 个文件
+└── week_5\   第五周  Day29 ~          4 个目录    8 个文件
 ```
 
 **分周规则：按目录名里最小的那个 Day 号归周。**
@@ -110,6 +110,7 @@ archive\
 | `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 2 |
 | `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 3 |
 | `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 2 |
+| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 1 |
 
 ### `week_5\Day29总\` 内部
 
@@ -132,7 +133,13 @@ archive\
 | `Day31-0` | `Day31.java` | `File` 元信息：`listFiles()` 判 `null` 后 `return`、`mkdir`/`createNewFile`、`getName()+endsWith(".java")` 筛文件、计数器数 `.java` 个数、`delete()` 返回值验证（`if (note.delete())` 而不是先删再 println） |
 | `Day31-1` | `Day31B.java` | 目录清单器综合题（11-03 凌晨写完，独立完成）：`listDir(String)` 拆成方法，三个前置守卫（不存在 / 不是目录 / `listFiles()` 返回 `null`）逐个 `return`，`isFile` 与 `isDirectory` 两个分支分别打「名字 类型 大小」，末行汇总 `共 N 项,其中文件 X 个,目录 Y 个`。五个调用把三条守卫 + 两个分类分支全跑过 |
 
-**以后同一天再做第二组，就建 `Day29-1`、`Day30-1`…… 一个目录一组 —— 跟 `Day27总` 一样。**
+### `week_5\Day32总\` 内部
+
+| 子目录 | 文件 | 内容 |
+|---|---|---|
+| `Day32-0` | `Day32.java` | 字节流：`write(int)` 只取低 8 位、`write(byte[])` 写一块、`FileOutputStream(..., true)` 追加对比默认清空；`read()` 逐字节递进、`-1` 判结尾、`(char) b` 转字符；两处 `try-with-resources`；`copy(from, to)` 用 1024 块 + `write(buf, 0, n)`，实测复制 30,784,597 字节的 flac，源与目标字节数一字节不差 |
+
+
 
 ---
 

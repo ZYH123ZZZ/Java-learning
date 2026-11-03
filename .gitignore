@@ -3,3 +3,4 @@ out/
 .idea/
 *.iml
 archive/_migrate.sh
+data/
