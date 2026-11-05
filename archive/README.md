@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   40 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-└── week_5\   第五周  Day29 ~          5 个目录   11 个文件
+└── week_5\   第五周  Day29 ~          6 个目录   12 个文件
 ```
 
 **分周规则：按目录名里最小的那个 Day 号归周。**
@@ -112,6 +112,7 @@ archive\
 | `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 2 |
 | `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 2 |
 | `Day33总` | 11-04 | 字符流 InputStreamReader / OutputStreamWriter / BufferedReader，下面分子目录，见下 | 2 |
+| `Day34总` | 11-05 | 综合：词频统计器 v3（HashMap 计数 + 比较器排序 + 写回文件），下面分子目录，见下 | 1 |
 
 ### `week_5\Day29总\` 内部
 
@@ -147,6 +148,12 @@ archive\
 |---|---|---|
 | `Day33-0` | `Day33.java` | 字符流三层结构：`BufferedWriter(new OutputStreamWriter(new FileOutputStream("data/cn.txt"), StandardCharsets.UTF_8))` 写三行中文、`newLine()` 换行；`BufferedReader(new InputStreamReader(new FileInputStream(...), UTF_8))` 逐行 `readLine()` 读回，序号 `n + ". " + line` **只在打印时加、不写进文件**（文件 70 字节原文三行，无 `1.` 前缀）；末尾用 `FileInputStream` 逐字节 `read()` + `(char)` 再读一遍，亲眼看 UTF-8 中文被拆成 `æçç¹å«ç±ä½` 的乱码。追加实验做完后已删掉 `true`，恢复覆盖写 |
 | `Day33-1` | `Day33B.java` | 文本清理器综合题（11-04，题目在 `E:\dsh\java\Day33B-文本清理器.md`）：`clean(String fromPath, String toPath)` 拆成方法，双层 `try-with-resources` 同时开读、写两个流（UTF-8）；`readLine()` 读到 `null` 结束，`strip()` 去两头空白，`isEmpty()` 判空行后 `continue`；`bw.write(line)` 紧跟 `bw.newLine()` 一行一行写出；三个计数器 `n` / `emp` / `wri` 分别在读完一行、判为空行、写完一行时加。实测题目给的 9 行测试数据 → 原文 9 / 清掉空行 4 / 写出 5，`clean.txt` 5 行无空行、无首尾空格，`dirty.txt` 跑前跑后都是 94 字节（没被覆盖）。测试数据里含一个「只有一个制表符」的行，`strip + isEmpty` 正确识别成空行 |
+
+### `week_5\Day34总\` 内部
+
+| 子目录 | 文件 | 内容 |
+|---|---|---|
+| `Day34-0` | `Day34.java` | 词频统计器 v3（11-05，教材 Day34 综合）：`BufferedReader` 逐行 `readLine()` → `toLowerCase().split(" +")`（正则 `+` 吃掉连续空格，写 `split(" ")` 遇双空格会切出空串）→ `HashMap<String,Integer>` 计数 → `new ArrayList<>(hm.keySet())` **建在读完整个文件之后**（建在 `while` 前拿到的是空名单）→ `Collections.sort(list, (a, b) -> hm.get(b) - hm.get(a))` 按次数降序 → `BufferedWriter` 写 `data/report.txt`。实测文章两行 → the 4 / on 2 / sat 2 / 其余各 1，单词总数 12、不同 7、最长 elephant，`report.txt` 178 字节。**已知瑕疵（未改，不影响数据）**：标题写成 `=== 词频统计 ===`（教材要求 `=== 词频排行 ===`）；排行与 `=== 总计 ===` 之间缺一个空行 |
 
 
 
