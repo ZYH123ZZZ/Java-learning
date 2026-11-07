@@ -25,7 +25,8 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   40 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-└── week_5\   第五周  Day29 ~          6 个目录   12 个文件
+├── week_5\   第五周  Day29 ~ Day34    6 个目录   12 个文件
+└── week_6\   第六周  Day36 ~          1 个目录    5 个文件
 ```
 
 **分周规则：按目录名里最小的那个 Day 号归周。**
@@ -156,6 +157,24 @@ archive\
 | `Day34-0` | `Day34.java` | 词频统计器 v3（11-05，教材 Day34 综合）：`BufferedReader` 逐行 `readLine()` → `toLowerCase().split(" +")`（正则 `+` 吃掉连续空格，写 `split(" ")` 遇双空格会切出空串）→ `HashMap<String,Integer>` 计数 → `new ArrayList<>(hm.keySet())` **建在读完整个文件之后**（建在 `while` 前拿到的是空名单）→ `Collections.sort(list, (a, b) -> hm.get(b) - hm.get(a))` 按次数降序 → `BufferedWriter` 写 `data/report.txt`。实测文章两行 → the 4 / on 2 / sat 2 / 其余各 1，单词总数 12、不同 7、最长 elephant，`report.txt` 178 字节。**已知瑕疵（未改，不影响数据）**：标题写成 `=== 词频统计 ===`（教材要求 `=== 词频排行 ===`）；排行与 `=== 总计 ===` 之间缺一个空行 |
 
 
+
+---
+
+## week_6：第六周（Day36 ~ ）
+
+| 目录 | 日期 | 内容 | 文件数 |
+|---|---|---|---|
+| `杂项-0` | 11-07 | 第六周开课前的一次性收纳：必补八条第 1~4 条的练习 + 打包用的 Day34 副本 + 清单，下面见下 | 5 |
+
+### `week_6\杂项-0\` 内部
+
+| 文件 | 内容 |
+|---|---|
+| `Day34.java` | 从 `week_5\Day34总\Day34-0` 拿回来打包 jar 用的副本；`M1("data/archive.txt","data/report.txt")` 词频统计器 v3 |
+| `Dog1.java` | 必补八条第 4 条：`equals` 四步（`this==o` / `!instanceof` / 强转 / 逐字段）+ `Objects.hash(name, age)`。12 项测试全过：HashSet 去重剩 2 只、`contains` 新建同款返回 true、两个 null 字段不崩、1000 次放入只剩 5 只 |
+| `Eight_hole.java` | 必补八条第 1~3 条合集：`Hole_one()` 用 StringBuilder 拼一万个数字（末尾 `deleteCharAt` 去掉多余逗号）、`check(int)` 抛自定义异常并 try-catch、`main` 两者都调 |
+| `AgeException.java` | 第 3 条自定义异常：`extends Exception` + `super(msg)`，五处拼写（文件名/类名/throws/new/catch）一致 |
+| `META-INF/MANIFEST.MF` | IDEA 打 jar 用的清单（44 字节）：`Main-Class: Day34` |
 
 ---
 
