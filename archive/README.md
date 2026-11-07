@@ -26,7 +26,7 @@ archive\
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
 ├── week_5\   第五周  Day29 ~ Day34    6 个目录   12 个文件
-└── week_6\   第六周  Day36 ~          1 个目录    5 个文件
+└── week_6\   第六周  Day36 ~          2 个目录    7 个文件
 ```
 
 **分周规则：按目录名里最小的那个 Day 号归周。**
@@ -165,6 +165,7 @@ archive\
 | 目录 | 日期 | 内容 | 文件数 |
 |---|---|---|---|
 | `杂项-0` | 11-07 | 第六周开课前的一次性收纳：必补八条第 1~4 条的练习 + 打包用的 Day34 副本 + 清单，下面见下 | 5 |
+| `Day36总` | 11-07 | equals / hashCode / toString 三件套实战：判等 + 哈希 + 集合去重 + 打印，下面分子目录，见下 | 2 |
 
 ### `week_6\杂项-0\` 内部
 
@@ -175,6 +176,12 @@ archive\
 | `Eight_hole.java` | 必补八条第 1~3 条合集：`Hole_one()` 用 StringBuilder 拼一万个数字（末尾 `deleteCharAt` 去掉多余逗号）、`check(int)` 抛自定义异常并 try-catch、`main` 两者都调 |
 | `AgeException.java` | 第 3 条自定义异常：`extends Exception` + `super(msg)`，五处拼写（文件名/类名/throws/new/catch）一致 |
 | `META-INF/MANIFEST.MF` | IDEA 打 jar 用的清单（44 字节）：`Main-Class: Day34` |
+
+### `week_6\Day36总\` 内部
+
+| 子目录 | 文件 | 内容 |
+|---|---|---|
+| `Day36-0` | `Day36.java` + `Dog2.java` | `equals` / `hashCode` / `toString` 三件套。`Dog2`：`equals` 四步（`this==o` / `!(o instanceof Dog2)` / 强转 / `d.age == age && Objects.equals(name, d.name)`）、`hashCode` 用 `Objects.hash(age, name)`、`toString` 输出 `Dog2{name= 旺财, age= 3}`。`Day36`：`type1(Dog2, Dog2)` 打印相同/不同 **并打印两边 hashCode**；`type2(Dog2...)` 用 `HashSet` 数去重后剩几只（可变参数 + 泛型集合）。三组实跑：① `旺财3` 对 `旺财3` → 一样、哈希 `846470 vs 846470`、三只 `旺财3/旺财3/小黑5` 去重剩 **2 只** ② `旺财3` 对 `小黑5` → 不一样、哈希 `846470 vs 772350`、三只全不同剩 **3 只** ③ `旺财3` 对 `旺财9` → 不一样、哈希 `846470 vs 846656`、剩 **1 只**（第 3 组证明 `age` 真的参与比较，不是只比名字） |
 
 ---
 
