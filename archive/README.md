@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   40 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-├── week_5\   第五周  Day29 ~ Day34    6 个目录   12 个文件
+├── week_5\   第五周  Day29 ~ Day34    7 个目录   14 个文件
 └── week_6\   第六周  Day36 ~          2 个目录    7 个文件
 ```
 
@@ -114,6 +114,7 @@ archive\
 | `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 2 |
 | `Day33总` | 11-04 | 字符流 InputStreamReader / OutputStreamWriter / BufferedReader，下面分子目录，见下 | 2 |
 | `Day34总` | 11-05 | 综合：词频统计器 v3（HashMap 计数 + 比较器排序 + 写回文件），下面分子目录，见下 | 1 |
+| `订正` | 11-07 | 第五周补漏练习（集合排序那两块），不分子目录，见下 | 2 |
 
 ### `week_5\Day29总\` 内部
 
@@ -157,6 +158,15 @@ archive\
 | `Day34-0` | `Day34.java` | 词频统计器 v3（11-05，教材 Day34 综合）：`BufferedReader` 逐行 `readLine()` → `toLowerCase().split(" +")`（正则 `+` 吃掉连续空格，写 `split(" ")` 遇双空格会切出空串）→ `HashMap<String,Integer>` 计数 → `new ArrayList<>(hm.keySet())` **建在读完整个文件之后**（建在 `while` 前拿到的是空名单）→ `Collections.sort(list, (a, b) -> hm.get(b) - hm.get(a))` 按次数降序 → `BufferedWriter` 写 `data/report.txt`。实测文章两行 → the 4 / on 2 / sat 2 / 其余各 1，单词总数 12、不同 7、最长 elephant，`report.txt` 178 字节。**已知瑕疵（未改，不影响数据）**：标题写成 `=== 词频统计 ===`（教材要求 `=== 词频排行 ===`）；排行与 `=== 总计 ===` 之间缺一个空行 |
 
 
+
+### `week_5\订正\` 内部
+
+这里是**补漏练习**的成品，不按 `DayNN` 编号，因为是回头补第五周欠的账（题目在 `E:\dsh\java\第五周补漏练习.md`）。
+
+| 文件 | 内容 |
+|---|---|
+| `Arr.java` | 补漏 A1「排行榜」：`HashMap` 计数 → `new ArrayList<>(count.keySet())` → `Collections.sort` 两段比较器（`int d1 = count.get(b) - count.get(a); if (d1 != 0) return d1; return a.compareTo(b);`）→ 带序号打印。实测输出 `the 4 / mat 3 / on 2 / sat 2 / cat 1 / dog 1 / elephant 1`，四条判据全过。**踩过的坑**：`new ArrayList<>(count.keySet())` 最初写在所有 `put` 之前，拿到空名单，排完还是 `[]`，`get(0)` 直接 `IndexOutOfBoundsException: Index 0 out of bounds for length 0`——这是他**第三次**同款「东西放错流程位置」的错（前两次：Day32A 计数器放进 `while`、Day34 `a1s` 建在 `while` 之前）。循环上界也从 `count.size()` 改成 `ar.size()`（循环哪个就用哪个的 size） |
+| `CityRank.java` | 补漏 A3「城市销量榜」：同一套结构换数据（`shanghai 12 / beijing 12 / zhengzhou 7 / wuhan 7 / xian 3 / chengdu 3`，**三组全是并列**，专治「只写一条规则」），比较器两段写对。**踩过的坑**：排序六行全对，但序号硬编码成 `"1. "`，打出六个 `1.`——这是他**第三次「算对了、报告错了」**（前两次：practice1 打印被减到 0 的 `n`、Day32B 打印一堆 `False`）。改成 `(i + 1) + ". "` 后正确 |
 
 ---
 
