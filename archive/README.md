@@ -176,6 +176,7 @@ archive\
 |---|---|---|---|
 | `杂项-0` | 11-07 | 第六周开课前的一次性收纳：必补八条第 1~4 条的练习 + 打包用的 Day34 副本 + 清单，下面见下 | 5 |
 | `Day36总` | 11-07 | equals / hashCode / toString 三件套实战：判等 + 哈希 + 集合去重 + 打印，下面分子目录，见下 | 2 |
+| `Day37总` | 11-08 | 第一个碰真实文件系统的程序：`File` + `FilenameFilter` 匿名内部类筛 `.java`，判空守卫顺序 + `File` 双参构造取真实字节数，下面分子目录，见下 | 1 |
 
 ### `week_6\杂项-0\` 内部
 
@@ -192,6 +193,12 @@ archive\
 | 子目录 | 文件 | 内容 |
 |---|---|---|
 | `Day36-0` | `Day36.java` + `Dog2.java` | `equals` / `hashCode` / `toString` 三件套。`Dog2`：`equals` 四步（`this==o` / `!(o instanceof Dog2)` / 强转 / `d.age == age && Objects.equals(name, d.name)`）、`hashCode` 用 `Objects.hash(age, name)`、`toString` 输出 `Dog2{name= 旺财, age= 3}`。`Day36`：`type1(Dog2, Dog2)` 打印相同/不同 **并打印两边 hashCode**；`type2(Dog2...)` 用 `HashSet` 数去重后剩几只（可变参数 + 泛型集合）。三组实跑：① `旺财3` 对 `旺财3` → 一样、哈希 `846470 vs 846470`、三只 `旺财3/旺财3/小黑5` 去重剩 **2 只** ② `旺财3` 对 `小黑5` → 不一样、哈希 `846470 vs 772350`、三只全不同剩 **3 只** ③ `旺财3` 对 `旺财9` → 不一样、哈希 `846470 vs 846656`、剩 **1 只**（第 3 组证明 `age` 真的参与比较，不是只比名字） |
+
+### `week_6\Day37总\` 内部
+
+| 子目录 | 文件 | 内容 |
+|---|---|---|
+| `Day37-0` | `Day37.java` | 第一个碰真实文件系统的程序。`listJava(String dirPath)`：`File` 对象 + `FilenameFilter` 匿名内部类只筛 `.java`，`dir1.list(...)` 返回 `String[]` 文件名数组。两个守卫顺序固定 —— 先 `names == null`（目录不存在时 `list()` 返回 null，对 null 取 `.length` 当场 NPE），后 `names.length == 0`；顺序反了第一个判空就是死代码，整个程序靠 `catch` 兜着跑。再用 `File(File parent, String child)` 双参构造 `new File(dir1, names[i])` 拼完整路径，打印 `getName()` + `length()` —— `length()` 加在目录上返回的是目录项本身（NTFS 一个簇 = 4096），加在文件上才是真实字节数。五场景实跑：`archive\week_4\Day24` → 18 行 `名字 字节数`；`archive\week_6\杂项-0` → 4 行且不含 `META-INF`；`data` → 空数组；`C:\no\such\dir` → null；传文件 `src\Day37.java` → null。另含两个能跑的匿名 `Comparator`（长度升序 / 字母倒序），Lambda 版本按要求跳过未写 |
 
 ---
 
