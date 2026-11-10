@@ -26,7 +26,7 @@ archive\
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
 ├── week_5\   第五周  Day29 ~ Day34    7 个目录   14 个文件
-└── week_6\   第六周  Day36 ~          2 个目录    7 个文件
+└── week_6\   第六周  Day36 ~ Day39    5 个目录   14 个文件
 ```
 
 **分周规则：按目录名里最小的那个 Day 号归周。**
@@ -176,8 +176,9 @@ archive\
 |---|---|---|---|
 | `杂项-0` | 11-07 | 第六周开课前的一次性收纳：必补八条第 1~4 条的练习 + 打包用的 Day34 副本 + 清单，下面见下 | 5 |
 | `Day36总` | 11-07 | equals / hashCode / toString 三件套实战：判等 + 哈希 + 集合去重 + 打印，下面分子目录，见下 | 2 |
-| `Day37总` | 11-08 | 第一个碰真实文件系统的程序：`File` + `FilenameFilter` 匿名内部类筛 `.java`，判空守卫顺序 + `File` 双参构造取真实字节数，下面分子目录，见下 | 1 |
+| `Day37总` | 11-08 | 第一个碰真实文件系统的程序：`File` + `FilenameFilter` 匿名内部类筛 `.java`，判空守卫顺序 + `File` 双参构造取真实字节数，下面分子目录，见下 | 2 |
 | `Day38总` | 11-09 | Lambda 与函数式接口入门：Runnable / Comparator / Consumer / 方法引用 / `forEach` / 自写 `map`+`filter`，下面分子目录，见下 | 4 |
+| `Day39总` | 11-10 | Stream 入门第一课：`filter` / `map` / `sorted` / `collect` / `groupingBy`，把前一天的 Lambda 换成流水线写法，下面分子目录，见下 | 1 |
 
 ### `week_6\杂项-0\` 内部
 
@@ -200,6 +201,7 @@ archive\
 | 子目录 | 文件 | 内容 |
 |---|---|---|
 | `Day37-0` | `Day37.java` | 第一个碰真实文件系统的程序。`listJava(String dirPath)`：`File` 对象 + `FilenameFilter` 匿名内部类只筛 `.java`，`dir1.list(...)` 返回 `String[]` 文件名数组。两个守卫顺序固定 —— 先 `names == null`（目录不存在时 `list()` 返回 null，对 null 取 `.length` 当场 NPE），后 `names.length == 0`；顺序反了第一个判空就是死代码，整个程序靠 `catch` 兜着跑。再用 `File(File parent, String child)` 双参构造 `new File(dir1, names[i])` 拼完整路径，打印 `getName()` + `length()` —— `length()` 加在目录上返回的是目录项本身（NTFS 一个簇 = 4096），加在文件上才是真实字节数。五场景实跑：`archive\week_4\Day24` → 18 行 `名字 字节数`；`archive\week_6\杂项-0` → 4 行且不含 `META-INF`；`data` → 空数组；`C:\no\such\dir` → null；传文件 `src\Day37.java` → null。另含两个能跑的匿名 `Comparator`（长度升序 / 字母倒序），Lambda 版本按要求跳过未写 |
+| `Day37-1` | `Day37L.java` | 同一个筛 `.java` 的功能写两遍并排：`a1` 用 Lambda 一行 `dir1.list((folder, name) -> name.endsWith(".java"))`，`a2` 用 `new FilenameFilter(){ @Override public boolean accept(File dir, String name){ return name.endsWith(".java"); } }`。这是 `FilenameFilter` 只有 **1 个抽象方法**的直接验证 —— 单抽象方法接口（函数式接口）才能写成 Lambda。两版都用 `Arrays.toString(names)` 打印（数组没重写 `toString`，直接打会得到 `[Ljava.lang.String;@77459877` 这种哈希，示意值每次不同），实测两行输出完全一致 `[AgeException.java, Day34.java, Dog1.java, Eight_hole.java]`，都不含 `META-INF`。省掉的是整层方法外壳：`new FilenameFilter()` / `@Override` / 方法签名 / `return` / `{ }`，6 行变 1 行。**遗留**：L1 `import java.awt.*;` 与程序无关，两次清 import 都没删 |
 
 ### `week_6\Day38总\` 内部
 
@@ -209,6 +211,12 @@ archive\
 | | `Day38A.java` | 自写泛型方法 `public static <T> void runAll(List<T> data, Consumer<T> action)`：`for (T x : data) action.accept(x);`。`Consumer` 的抽象方法只有 `void accept(T)`，`action.accept(x)` 就是「把 x 交给这段逻辑」。main 里同一个 `runAll` 连调三次、**一次没改代码**：① `s -> System.out.println("处理: " + s)` → `处理: 张三 / 李四 / 王五` ② `System.out::println` → `张三 / 李四 / 王五` ③ `x -> System.out.println(x * x)` → `1 4 9 16`。第三条是这次的关键：Lambda 体是**一个动作**，要打印平方就在里面算完直接 println，不能 `x = x * x`（赋值不留结果） |
 | | `Day38B.java` | 二级排序 + `continue`。数据 `java/io/stream/file/buffered/a/reader/go/code`（长度 4/2/6/4/8/1/6/2/4）。`Collections.sort(words, new Comparator<String>(){...})` 里 `if (o1.length() == o2.length()) return o1.compareTo(o2); return o2.length() - o1.length();` —— 长度降序 + 同长字母升序，`if` 那行是真会执行的（`java`/`file` 都是 4，`stream`/`reader` 都是 6）。实跑：`原始：[java, io, stream, file, buffered, a, reader, go, code]` → `排序后：[buffered, reader, stream, code, file, java, go, io, a]`。后半段 `for (String x : words) { if (x.length() < 3) continue; ... count++; }` 打印 6 个词、`剩余 6 个`（`a`/`go`/`io` 三个被跳过），`count++` 写在 `println` 之后才数得对。**这是二级排序第一次独立写对**（前一周补漏 A2 那道还是空的） |
 | | `Day38C.java` | 自己实现 `map` 和 `filter` 两个泛型方法，是这一周唯一从零写出函数式工具的一次。`public static <T,R> List<R> map(List<T> data, Function<T,R> f)`：先 `new ArrayList<>()` 造盒子，`for (T x : data) l1.add(f.apply(x));`，`Function` 的抽象方法只有 `R apply(T)`。`public static <T> List<T> filter(List<T> data, Predicate<T> p)`：结构完全一样，只差一个 `if (p.test(x)) result.add(x);` —— `Predicate` 的抽象方法只有 `boolean test(T)`，装的是 `x` 本身而不是 `p.test(x)`。四步实跑：① `map(names, s -> s.length())` → `[1, 2, 3, 4]` ② `filter(names, s -> s.length() >= 3)` → `[王五五, 赵六六六]` ③ `map(longNames, String::length)` → `[3, 4]` ④ 方法引用对 `names` 再跑一次 → 按设计应为 `[1, 2, 3, 4]`，**归档版本里这一行被 ③ 顶掉了，未单独打印**（`String::length` 这个用法本身在 ③ 里已验证）。L27 旁边留着他自己的注释 `//忘记结构`，L31 从"再调一次 filter"改成"复用 longNames"，因为实测 4 个元素时单次 `filter` 里的 Lambda 要跑 4 次，两处各写一次就是 8 次 —— 中间结果复用两次以上就该存变量 |
+
+### `week_6\Day39总\` 内部
+
+| 子目录 | 文件 | 内容 |
+|---|---|---|
+| `Day39-0` | `Day39.java` | Stream 入门，五个方法把同一份数据 `java/io/stream/file/buffered/a/reader/go/code`（长度 4/2/6/4/8/1/6/2/4）走五遍。`a0` 返回 `List<Integer>`：`filter(s -> s.length() >= 3).map(String::length).collect(Collectors.toList())` → `[4, 6, 4, 8, 6, 4]`；`a1` 长度≥4 且按长度**降序**：`filter(...).sorted(Comparator.comparingInt(String::length).reversed())` → `[buffered, stream, reader, java, file, code]`（同长度的保持原始顺序，因为 `sorted` 是稳定排序，没加 `thenComparing`）；`a2` 全大写 `map(String::toUpperCase)`；`a3` `filter(s -> s.startsWith("r")).size()` → `1`（只有 reader）；`a4` `groupingBy(String::length, Collectors.counting())` → `{1=1, 2=2, 4=3, 6=2, 8=1}`（**值类型是 Long 不是 Integer**，写成 `Map<Integer,Integer>` 编译不过）。五段实跑全对，编译零警告。L41-51 是他自己注释掉的一段练习残留，原话「这些全部是用来练习的 作废但是我不想删除」——里面的六行（`sorted()` / `sorted(reversed)` / `count()` / `anyMatch` / `limit(3)+joining` / `groupingBy`）都已单独跑通，只是没留输出 |
 
 ---
 
