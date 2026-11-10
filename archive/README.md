@@ -177,7 +177,7 @@ archive\
 | `杂项-0` | 11-07 | 第六周开课前的一次性收纳：必补八条第 1~4 条的练习 + 打包用的 Day34 副本 + 清单，下面见下 | 5 |
 | `Day36总` | 11-07 | equals / hashCode / toString 三件套实战：判等 + 哈希 + 集合去重 + 打印，下面分子目录，见下 | 2 |
 | `Day37总` | 11-08 | 第一个碰真实文件系统的程序：`File` + `FilenameFilter` 匿名内部类筛 `.java`，判空守卫顺序 + `File` 双参构造取真实字节数，下面分子目录，见下 | 1 |
-| `Day38总` | 11-09 | Lambda 与函数式接口入门：Runnable / Comparator / Consumer / 方法引用 / `forEach`，下面分子目录，见下 | 3 |
+| `Day38总` | 11-09 | Lambda 与函数式接口入门：Runnable / Comparator / Consumer / 方法引用 / `forEach` / 自写 `map`+`filter`，下面分子目录，见下 | 4 |
 
 ### `week_6\杂项-0\` 内部
 
@@ -208,6 +208,7 @@ archive\
 | `Day38-0` | `Day38.java` | 教材三道动手任务。① `Runnable r1 = () -> {...}` 零参数 Lambda 打印「我是一句话」；② `Comparator<String> com = (String a, String b) -> { return b.length() - a.length(); }` 长度**倒序**（`b - a` 才是倒序，`a - b` 是升序），`li.sort(com)` 后输出 `[akdghia, 192371, 43]`；③ `li.forEach(System.out::println)` 方法引用打印。**L23-27 是一段没跑通的残留**：往 `List<Runnable>` 里塞了三个 Lambda，却用 `forEach(System.out::println)` 输出 —— `println` 收到的是 `Runnable` 对象本身，打出来的是 `Day38$$Lambda/0x...@19469ea2` 这种哈希（示意值，每次运行都不同），三个 Lambda 一个都没执行。要执行得写 `li1.forEach(Runnable::run)` 或 `for (Runnable r : li1) r.run();` |
 | | `Day38A.java` | 自写泛型方法 `public static <T> void runAll(List<T> data, Consumer<T> action)`：`for (T x : data) action.accept(x);`。`Consumer` 的抽象方法只有 `void accept(T)`，`action.accept(x)` 就是「把 x 交给这段逻辑」。main 里同一个 `runAll` 连调三次、**一次没改代码**：① `s -> System.out.println("处理: " + s)` → `处理: 张三 / 李四 / 王五` ② `System.out::println` → `张三 / 李四 / 王五` ③ `x -> System.out.println(x * x)` → `1 4 9 16`。第三条是这次的关键：Lambda 体是**一个动作**，要打印平方就在里面算完直接 println，不能 `x = x * x`（赋值不留结果） |
 | | `Day38B.java` | 二级排序 + `continue`。数据 `java/io/stream/file/buffered/a/reader/go/code`（长度 4/2/6/4/8/1/6/2/4）。`Collections.sort(words, new Comparator<String>(){...})` 里 `if (o1.length() == o2.length()) return o1.compareTo(o2); return o2.length() - o1.length();` —— 长度降序 + 同长字母升序，`if` 那行是真会执行的（`java`/`file` 都是 4，`stream`/`reader` 都是 6）。实跑：`原始：[java, io, stream, file, buffered, a, reader, go, code]` → `排序后：[buffered, reader, stream, code, file, java, go, io, a]`。后半段 `for (String x : words) { if (x.length() < 3) continue; ... count++; }` 打印 6 个词、`剩余 6 个`（`a`/`go`/`io` 三个被跳过），`count++` 写在 `println` 之后才数得对。**这是二级排序第一次独立写对**（前一周补漏 A2 那道还是空的） |
+| | `Day38C.java` | 自己实现 `map` 和 `filter` 两个泛型方法，是这一周唯一从零写出函数式工具的一次。`public static <T,R> List<R> map(List<T> data, Function<T,R> f)`：先 `new ArrayList<>()` 造盒子，`for (T x : data) l1.add(f.apply(x));`，`Function` 的抽象方法只有 `R apply(T)`。`public static <T> List<T> filter(List<T> data, Predicate<T> p)`：结构完全一样，只差一个 `if (p.test(x)) result.add(x);` —— `Predicate` 的抽象方法只有 `boolean test(T)`，装的是 `x` 本身而不是 `p.test(x)`。四步实跑：① `map(names, s -> s.length())` → `[1, 2, 3, 4]` ② `filter(names, s -> s.length() >= 3)` → `[王五五, 赵六六六]` ③ `map(longNames, String::length)` → `[3, 4]` ④ 方法引用对 `names` 再跑一次 → 按设计应为 `[1, 2, 3, 4]`，**归档版本里这一行被 ③ 顶掉了，未单独打印**（`String::length` 这个用法本身在 ③ 里已验证）。L27 旁边留着他自己的注释 `//忘记结构`，L31 从"再调一次 filter"改成"复用 longNames"，因为实测 4 个元素时单次 `filter` 里的 Lambda 要跑 4 次，两处各写一次就是 8 次 —— 中间结果复用两次以上就该存变量 |
 
 ---
 
