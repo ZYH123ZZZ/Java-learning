@@ -35,6 +35,33 @@ archive\
 
 ---
 
+## check 归档：查漏验收（2026-11-10）
+
+2026-11-10 按 `E:\dsh\java\必背\查漏清单-2026-11-10.md` 做了 32 道查漏题（Day1 ~ Day39 全覆盖）。**通过 11 道**，代码归档到对应 Day 目录下新建的 `check\` 子目录；没通过的留在 `test\src\` 继续改。
+
+| 题号 | 考什么 | 归档到 | 文件 |
+|---|---|---|---|
+| 5 | Day6 数组 + `Arrays.toString` | `week_1\1005_Day6\check\` | `checkD6.java` |
+| 6 | Day8 方法 + 返回值 | `week_2\1009_Day8\check\` | `checkD8.java` |
+| 7 | Day9 方法进阶（数组当参数） | `week_2\1010_Day8-9\check\` | `checkD9.java` |
+| 12 | Day15+16 类 / 构造 / 方法 | `week_3\1019_Day15-16\check\` | `checkD15and16.java`、`Goods_D15and16.java` |
+| 13 | Day17 ArrayList | `week_3\1020_Day17\check\` | `checkD17.java` |
+| 14 | Day18 泛型 + foreach | `week_3\1021_Day17-18\check\` | `checkD18.java` |
+| 15 | Day19 HashMap + `keySet` 遍历 | `week_3\1022_Day19\check\` | `checkD19.java` |
+| 16 | Day20 HashSet + 集合三兄弟 | `week_3\1023_Day20\check\` | `checkD20.java` |
+| 17 | Day22 继承 | `week_3\1025_Day21-22\check\` | `checkD22.java`、`Animal_D22.java`、`Dog_D22.java` |
+| 18 | Day23 重写 + `super.speak()` | `week_4\Day24\check\` | `checkD23.java`、`Animal_D23.java`、`Dog_D23.java` |
+| 19 | Day24 多态 | `week_4\Day24\check\` | `checkD24.java`、`Animal_D24.java`、`Dog_D24.java` |
+
+**为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
+
+**没通过的 11 道**（题号 1、2、3、4、8、9、10、11、20、21、22）留在 `test\src\`，代码分别是 `checkD1` / `checkD3` / `checkD4` / `checkD5` / `checkD10` / （第9题没写）/ `checkD12` / `checkD13` / `checkD25` / `checkD26` / `checkD27`。
+
+---
+
+
+---
+
 ## week_1：第一周（Day1 ~ Day7）
 
 | 目录 | 日期 | 对应 Day | 文件数 |
