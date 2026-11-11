@@ -22,7 +22,7 @@
 ```
 archive\
 ├── week_1\   第一周  Day1  ~ Day7      8 个目录   26 个文件
-├── week_2\   第二周  Day8  ~ Day14     9 个目录   40 个文件
+├── week_2\   第二周  Day8  ~ Day14     9 个目录   49 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
 ├── week_5\   第五周  Day29 ~ Day34    7 个目录   14 个文件
@@ -55,12 +55,18 @@ archive\
 | 1 | Day1 变量 | `week_1\1001_Day1\check\` | `checkD1_A.java`、`checkD1_B.java`（11-11 补课重出） |
 | 2 | Day2-3 Scanner | `week_1\1002_Day2-3\check\` | `checkD3.java`、`checkD3_A.java`、`checkD3_B.java` |
 | 3 | Day4 if / switch | `week_1\1003_Day4\check\` | `checkD4.java`（11-11 把 70 改成 60 后过） |
+| 8 | Day10 String 基础 | `week_2\1012_Day10-11\check\` | `checkD10andD11_A.java`（回文，11-11 补课重出） |
+| 9 | Day11 String 进阶 | `week_2\1012_Day10-11\check\` | `checkD10andD11_B.java`（取后缀，11-11 补课重出） |
+| 10 | Day12 嵌套循环 | `week_2\1015_Day12-13\check\` | `checkD12_A/B/C/D.java`（11-11 补课四道重出） |
+| 11 | Day13 排序 | `week_2\1015_Day12-13\check\` | `checkD13.java`（冒泡四组边界全过） |
 
 **为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
 
 **11-11 补课后又有 4 道通过**（原题号 1、2、3、4）：Day1 变量、Day2-3 Scanner、Day4 if/switch 三门，全部重出题做对后归档到上表。原题 `checkD1`（重复打印欢迎语、`long a1` 定义了没打印、变量名 a/a1/a2）和 `checkD4_B`（switch 半成品，`case 10:` 后面空的、没有输出）没改完，`checkD5`（Day5）当天跳过。
 
-**仍未通过的 7 道**（题号 8、9、10、11、20、21、22）留在 `test\src\`：`checkD10` / （第9题 Day11 一直没写）/ `checkD12` / `checkD13` / `checkD25` / `checkD26` / `checkD27`。
+**11-11 补课第二批**（题号 8、9、10、11）也通过了：Day10-11 字符串、Day12 嵌套循环、Day13 排序。原题 `checkD10`（`s1[i] == "a"` 用 == 比 String，输出 0）和 `checkD12`（内层 `j = i` 写出倒三角）是错的旧版，**没有归档**，补课用的是重出的新文件。
+
+**仍未通过的 3 道**（题号 20、21、22）留在 `test\src\`：`checkD25` + `Animal_D25` / `checkD26` + `AgeException_D26` / `checkD27`。
 
 ---
 
@@ -86,13 +92,13 @@ archive\
 
 | 目录 | 日期 | 对应 Day | 文件数 |
 |---|---|---|---|
-| `1009_Day8` | 10-09 | Day8 | 5 |
-| `1010_Day8-9` | 10-10 | Day8、Day9 | 5 |
+| `1009_Day8` | 10-09 | Day8 | 6 |
+| `1010_Day8-9` | 10-10 | Day8、Day9 | 6 |
 | `1011_Day9-10` | 10-11 | Day9、Day10 | 3 |
-| `1012_Day10-11` | 10-12 | Day10、Day11 | 3 |
+| `1012_Day10-11` | 10-12 | Day10、Day11 | 5 |
 | `1013_Day10-11` | 10-13 | Day10、Day11 | 3 |
 | `1014_Day11-12` | 10-14 | Day11、Day12（含 Fix1/Fix2） | 9 |
-| `1015_Day12-13` | 10-15 | Day12、Day13 | 3 |
+| `1015_Day12-13` | 10-15 | Day12、Day13 | 8 |
 | `1016_Day14` | 10-16 | Day14（含 Main1/Main2/MathDemo/PrimeDemo/ForWhileDemo） | 6 |
 | `1017_Day14-15` | 10-17 | Day14、Day15 | 3 |
 
