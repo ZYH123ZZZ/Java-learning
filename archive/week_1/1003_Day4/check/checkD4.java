@@ -10,18 +10,11 @@ public class checkD4 {
             Rank = "A";
         } else if (score >= 80) {
             Rank = "B";
-        } else if (score >= 70) {
+        } else if (score >= 60) {
             Rank = "C";
         } else {
             Rank = "D";
         }
         System.out.println("Rank: " + Rank);
-
-//        switch (score) {
-//            case 1 -> {
-//
-//            }
-//        }
-
         }
     }

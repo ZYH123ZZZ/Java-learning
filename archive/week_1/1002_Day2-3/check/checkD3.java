@@ -8,8 +8,9 @@ public class checkD3 {
         List<String> list = new ArrayList<>();
 
         int n = sc.nextInt();
+        sc.nextLine();
         for (int i = 0; i < n; i++) {
-            list.add(sc.next());
+            list.add(sc.nextLine());
         }
         System.out.println(list.toString());
     }

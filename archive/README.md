@@ -52,10 +52,15 @@ archive\
 | 17 | Day22 继承 | `week_3\1025_Day21-22\check\` | `checkD22.java`、`Animal_D22.java`、`Dog_D22.java` |
 | 18 | Day23 重写 + `super.speak()` | `week_4\Day24\check\` | `checkD23.java`、`Animal_D23.java`、`Dog_D23.java` |
 | 19 | Day24 多态 | `week_4\Day24\check\` | `checkD24.java`、`Animal_D24.java`、`Dog_D24.java` |
+| 1 | Day1 变量 | `week_1\1001_Day1\check\` | `checkD1_A.java`、`checkD1_B.java`（11-11 补课重出） |
+| 2 | Day2-3 Scanner | `week_1\1002_Day2-3\check\` | `checkD3.java`、`checkD3_A.java`、`checkD3_B.java` |
+| 3 | Day4 if / switch | `week_1\1003_Day4\check\` | `checkD4.java`（11-11 把 70 改成 60 后过） |
 
 **为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
 
-**没通过的 11 道**（题号 1、2、3、4、8、9、10、11、20、21、22）留在 `test\src\`，代码分别是 `checkD1` / `checkD3` / `checkD4` / `checkD5` / `checkD10` / （第9题没写）/ `checkD12` / `checkD13` / `checkD25` / `checkD26` / `checkD27`。
+**11-11 补课后又有 4 道通过**（原题号 1、2、3、4）：Day1 变量、Day2-3 Scanner、Day4 if/switch 三门，全部重出题做对后归档到上表。原题 `checkD1`（重复打印欢迎语、`long a1` 定义了没打印、变量名 a/a1/a2）和 `checkD4_B`（switch 半成品，`case 10:` 后面空的、没有输出）没改完，`checkD5`（Day5）当天跳过。
+
+**仍未通过的 7 道**（题号 8、9、10、11、20、21、22）留在 `test\src\`：`checkD10` / （第9题 Day11 一直没写）/ `checkD12` / `checkD13` / `checkD25` / `checkD26` / `checkD27`。
 
 ---
 
@@ -66,11 +71,11 @@ archive\
 
 | 目录 | 日期 | 对应 Day | 文件数 |
 |---|---|---|---|
-| `1001_Day1` | 10-01 | Day1 | 1 |
-| `1002_Day2-3` | 10-02 | Day2、Day3 | 4 |
-| `1003_Day4` | 10-03 | Day4 | 8 |
+| `1001_Day1` | 10-01 | Day1 | 3 |
+| `1002_Day2-3` | 10-02 | Day2、Day3 | 7 |
+| `1003_Day4` | 10-03 | Day4 | 9 |
 | `1004_Day5` | 10-04 | Day5 | 8 |
-| `1005_Day6` | 10-05 | Day6 | 1 |
+| `1005_Day6` | 10-05 | Day6 | 2 |
 | `1006_Day6A` | 10-06 | Day6A | 2 |
 | `1007_Day7` | 10-07 | Day7 | 1 |
 | `1008_Day7A` | 10-08 | Day7A | 1 |
