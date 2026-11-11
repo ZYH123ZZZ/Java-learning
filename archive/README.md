@@ -59,14 +59,17 @@ archive\
 | 9 | Day11 String 进阶 | `week_2\1012_Day10-11\check\` | `checkD10andD11_B.java`（取后缀，11-11 补课重出） |
 | 10 | Day12 嵌套循环 | `week_2\1015_Day12-13\check\` | `checkD12_A/B/C/D.java`（11-11 补课四道重出） |
 | 11 | Day13 排序 | `week_2\1015_Day12-13\check\` | `checkD13.java`（冒泡四组边界全过） |
+| 20 | Day25 抽象类 + 接口 | `week_4\Day25-发工资\check\` | `checkD25.java`、`Animal_D25`、`Duck_D25`、`Swimmable_D25`（第 20 题基础）；`checkD25_B.java`、`Shape_D25`、`Scalable_D25`、`Circle_D25`、`Rectangle_D25`（附加图形计算器，六个数全对） |
 
 **为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
 
 **11-11 补课后又有 4 道通过**（原题号 1、2、3、4）：Day1 变量、Day2-3 Scanner、Day4 if/switch 三门，全部重出题做对后归档到上表。原题 `checkD1`（重复打印欢迎语、`long a1` 定义了没打印、变量名 a/a1/a2）和 `checkD4_B`（switch 半成品，`case 10:` 后面空的、没有输出）没改完，`checkD5`（Day5）当天跳过。
 
-**11-11 补课第二批**（题号 8、9、10、11）也通过了：Day10-11 字符串、Day12 嵌套循环、Day13 排序。原题 `checkD10`（`s1[i] == "a"` 用 == 比 String，输出 0）和 `checkD12`（内层 `j = i` 写出倒三角）是错的旧版，**没有归档**，补课用的是重出的新文件。
+**11-11 补课第二批**（题号 8、9、10、11）也通过了：Day10-11 字符串、Day12 嵌套循环、Day13 排序。原题 `checkD10`（`s1[i] == "a"` 用 == 比 String，输出 0）和 `checkD12`（内层 `j = i` 写出倒三角）是错的旧版。**2026-11-11 决定留着当反面教材，已一并归档**：`checkD10.java` → `week_2\1012_Day10-11\check\`、`checkD12.java` → `week_2\1015_Day12-13\check\`。跟同目录下的 `_A`/`_B`/`_C`/`_D` 是同一道题的两种版本，文件名不带后缀的那个就是当时写错的。
 
-**仍未通过的 3 道**（题号 20、21、22）留在 `test\src\`：`checkD25` + `Animal_D25` / `checkD26` + `AgeException_D26` / `checkD27`。
+**11-11 补课第三批**（题号 20）也通过了：Day25 抽象类 + 接口。第 20 题四判据全过（能 new Duck、d.speak+d.swim、多态走子类、`a.swim()` 编译错两条原文都对），附加的图形计算器六个数一个不差。**留下一条待复习**：接口方法的强转调用（他自己在那行标了「这个不太熟悉」）。
+
+**仍未通过的 2 道**（题号 21、22）留在 `test\src\`：`checkD26` + `AgeException_D26` / `checkD27`。
 
 ---
 
@@ -95,10 +98,10 @@ archive\
 | `1009_Day8` | 10-09 | Day8 | 6 |
 | `1010_Day8-9` | 10-10 | Day8、Day9 | 6 |
 | `1011_Day9-10` | 10-11 | Day9、Day10 | 3 |
-| `1012_Day10-11` | 10-12 | Day10、Day11 | 5 |
+| `1012_Day10-11` | 10-12 | Day10、Day11 | 6 |
 | `1013_Day10-11` | 10-13 | Day10、Day11 | 3 |
 | `1014_Day11-12` | 10-14 | Day11、Day12（含 Fix1/Fix2） | 9 |
-| `1015_Day12-13` | 10-15 | Day12、Day13 | 8 |
+| `1015_Day12-13` | 10-15 | Day12、Day13 | 9 |
 | `1016_Day14` | 10-16 | Day14（含 Main1/Main2/MathDemo/PrimeDemo/ForWhileDemo） | 6 |
 | `1017_Day14-15` | 10-17 | Day14、Day15 | 3 |
 
@@ -124,7 +127,7 @@ archive\
 | 目录 | 日期 | 内容 | 文件数 |
 |---|---|---|---|
 | `Day24` | 10-25 | 多态、抽象类、Money/Cash/Coin、Animal 系 | 18 |
-| `Day25-发工资` | 10-27 | 接口 + 抽象类（Employee / Bonus / Clerk / Worker / Manager / Director / Day25B） | 7 |
+| `Day25-发工资` | 10-27 | 接口 + 抽象类（Employee / Bonus / Clerk / Worker / Manager / Director / Day25B；2026-11-11 补课 9 个 check 文件） | 16 |
 | `Day26总` | 10-28 | 下面四个子目录，见下 | 10 |
 | `Day27总` | 10-29 | 递归（拆数字、汉诺塔、回文） | 3 |
 | `Day28总` | 10-31 | 旧书摊结算（Book / Day28 / Day28A / Student1 / README） | 5 |

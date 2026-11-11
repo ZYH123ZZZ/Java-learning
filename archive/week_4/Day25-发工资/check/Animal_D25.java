@@ -6,4 +6,5 @@ abstract public class Animal_D25 {
     }
 
     abstract void speak();
+
 }
