@@ -7,12 +7,15 @@ public class checkD27 {
     }
 
     public static int fib(int n) {
-        return 0;//不会
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        return fib(n - 1) + fib(n - 2);
     }
 
     public static int sum(int[] arr, int i) {
-        if (i <= 0) {
-            return arr[i];
+        if (i < 0 || i >= arr.length) {//要考虑所有情况
+            return 0;//要考虑空数组的情况
         }
         return sum(arr, i - 1) + arr[i];
     }

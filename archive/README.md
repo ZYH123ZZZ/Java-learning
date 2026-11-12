@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   49 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-├── week_5\   第五周  Day29 ~ Day34    7 个目录   14 个文件
+├── week_5\   第五周  Day29 ~ Day34    7 个目录   19 个文件
 └── week_6\   第六周  Day36 ~ Day39    5 个目录   14 个文件
 ```
 
@@ -37,7 +37,7 @@ archive\
 
 ## check 归档：查漏验收（2026-11-10）
 
-2026-11-10 按 `E:\dsh\java\必背\查漏清单-2026-11-10.md` 做了 32 道查漏题（Day1 ~ Day39 全覆盖）。**通过 11 道**，代码归档到对应 Day 目录下新建的 `check\` 子目录；没通过的留在 `test\src\` 继续改。
+2026-11-10 按 `E:\dsh\java\必背\查漏清单-2026-11-10.md` 做了 32 道查漏题（Day1 ~ Day39 全覆盖）。**到 2026-11-12 为止题号 1~22 全部通过**（11-10 当天 11 道 + 11-11 补课 11 道），代码归档到对应 Day 目录下新建的 `check\` 子目录。**还剩题号 23~32 共 10 道（第五、六周内容）没做**，等主线推到对应内容再一起做。
 
 | 题号 | 考什么 | 归档到 | 文件 |
 |---|---|---|---|
@@ -61,6 +61,9 @@ archive\
 | 11 | Day13 排序 | `week_2\1015_Day12-13\check\` | `checkD13.java`（冒泡四组边界全过） |
 | 20 | Day25 抽象类 + 接口 | `week_4\Day25-发工资\check\` | `checkD25.java`、`Animal_D25`、`Duck_D25`、`Swimmable_D25`（第 20 题基础）；`checkD25_B.java`、`Shape_D25`、`Scalable_D25`、`Circle_D25`、`Rectangle_D25`（附加图形计算器，六个数全对） |
 
+| 21 | Day26 异常（try / catch / finally + 自定义异常） | `week_4\Day26总\check\` | `checkD26.java`、`AgeException_D26.java`（主线原题）；`checkD26_A.java`、`MyArithmeticException.java`（A 题除法计算器）；`checkD26_B.java`、`BeyondnumException.java`（B 题成绩校验器） |
+| 22 | Day27 递归（出口判断 · 打印型 / 布尔型 / 计数型） | `week_4\Day27总\check\` | `checkD27.java`（主线原题 `fact` / `fib` / `sum`）、`checkD27_B.java` + `checkD27_B2.java`（`maxOf` 两版）、`checkD27_C.java`（`printReverse` 倒序打印）、`checkD27_D.java`（`contains` 布尔型）、`checkD27_E.java`（`countTarget` 计数型） |
+
 **为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
 
 **11-11 补课后又有 4 道通过**（原题号 1、2、3、4）：Day1 变量、Day2-3 Scanner、Day4 if/switch 三门，全部重出题做对后归档到上表。原题 `checkD1`（重复打印欢迎语、`long a1` 定义了没打印、变量名 a/a1/a2）和 `checkD4_B`（switch 半成品，`case 10:` 后面空的、没有输出）没改完，`checkD5`（Day5）当天跳过。
@@ -69,7 +72,11 @@ archive\
 
 **11-11 补课第三批**（题号 20）也通过了：Day25 抽象类 + 接口。第 20 题四判据全过（能 new Duck、d.speak+d.swim、多态走子类、`a.swim()` 编译错两条原文都对），附加的图形计算器六个数一个不差。**留下一条待复习**：接口方法的强转调用（他自己在那行标了「这个不太熟悉」）。
 
-**仍未通过的 2 道**（题号 21、22）留在 `test\src\`：`checkD26` + `AgeException_D26` / `checkD27`。
+**11-11 补课第四批**（题号 21）也通过：Day26 异常。主线原题 `checkD26.java` 交上来时 catch / finally 全空、异常类没有构造方法，当天判 **C**；补两道加强题后立住 —— A 题除法计算器（`checkD26_A.java`：手动 throw + 两个 catch；把自建的 `ArithmeticException` 改名 `MyArithmeticException`，同名类会顶掉 `java.lang` 那个，`10/0` 根本不会被自己定义的类接住）、B 题成绩校验器（`checkD26_B.java`：数组 `{88,-5,60,120,90}`，循环在外、`try` 在内，`finally` 每轮打「审完」，5 个元素出 7 行、其中 2 行是拦截）。综合判 **B**。留下的洞「抛异常之后 `try` 后面的代码不会再执行」已记进 `E:\dsh\java\必背\待复习清单.md` 第 6 条，2026-11-18 复查。
+
+**11-12 补课第五批**（题号 22）也通过：Day27 递归。主线原题 `checkD27.java` 交上来时 `fib` 是 `return 0`、`sum` 出口 `if (i <= 0) return arr[i];`，当天判 **C** —— 理由是 `sum` 出口改了小半夜：`<=` → `==` → `>` → `>=` 四次全在挪数字，没有一次在问「出口到底判断什么」。补三次加练后立住：`printReverse`（`void` 递归怎么停：`if (i < 0) return;`，顺带讲清 `i == 0` 会漏掉最后一格）、`contains`（**三版才对**：先写 `i <= 0` + `arr.length == 1` 特判，改 `length != 0` 仍挂 2 条，最后回到 `i < 0 || i >= arr.length` —— 正确的三行他自己先写过又注释掉了，这是当晚第 7 次「改边界不动机制」）、`countTarget`（一次写对，判 **A**）。
+
+**第二轮补课结束：32 道里题号 1~22 全部通过，`test\src\` 已清空。** 剩下的题号 23~32（第五、六周内容）等主线推到再考。
 
 ---
 
@@ -128,8 +135,8 @@ archive\
 |---|---|---|---|
 | `Day24` | 10-25 | 多态、抽象类、Money/Cash/Coin、Animal 系 | 18 |
 | `Day25-发工资` | 10-27 | 接口 + 抽象类（Employee / Bonus / Clerk / Worker / Manager / Director / Day25B；2026-11-11 补课 9 个 check 文件） | 16 |
-| `Day26总` | 10-28 | 下面四个子目录，见下 | 10 |
-| `Day27总` | 10-29 | 递归（拆数字、汉诺塔、回文） | 3 |
+| `Day26总` | 10-28 | 下面五个子目录，见下 | 16 |
+| `Day27总` | 10-29 | 递归（拆数字、汉诺塔、回文）；`check` 下 6 个查漏第 22 题文件 | 9 |
 | `Day28总` | 10-31 | 旧书摊结算（Book / Day28 / Day28A / Student1 / README） | 5 |
 | `day25` | — | **空目录**，可删 | 0 |
 | `杂项` | 10-27 | `test.java`（二维数组验证） | 1 |
@@ -142,6 +149,16 @@ archive\
 | `Day26-1` | Day26-2 | Student、week1_2（成绩单综合题） |
 | `Day26-2` | Day26-3 | Book、Day26D（图书排行） |
 | `Day26-3` | Day26-4 | Day26D、Student（图书排行改版） |
+| `check` | 查漏第 21 题（2026-11-11 补课） | `checkD26.java`、`AgeException_D26.java`、`checkD26_A.java`、`MyArithmeticException.java`、`checkD26_B.java`、`BeyondnumException.java` —— 6 个文件，详见开头「check 归档」表 |
+
+### `week_4\Day27总\` 内部
+
+| 子目录 | 原来的名字 | 内容 |
+|---|---|---|
+| `Day27-0` | Day27 | `Day27.java`（拆数字） |
+| `Day27-1` | Day27B | `Day27B.java`（汉诺塔） |
+| `Day27-2` | Day27C | `Day27C.java`（回文） |
+| `check` | 查漏第 22 题（2026-11-12 补课） | `checkD27.java`、`checkD27_B.java`、`checkD27_B2.java`、`checkD27_C.java`、`checkD27_D.java`、`checkD27_E.java` —— 6 个文件，详见开头「check 归档」表 |
 
 ---
 
@@ -149,13 +166,13 @@ archive\
 
 | 目录 | 日期 | 内容 | 文件数 |
 |---|---|---|---|
-| `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 2 |
+| `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 4 |
 | `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 3 |
 | `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 2 |
 | `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 2 |
 | `Day33总` | 11-04 | 字符流 InputStreamReader / OutputStreamWriter / BufferedReader，下面分子目录，见下 | 2 |
 | `Day34总` | 11-05 | 综合：词频统计器 v3（HashMap 计数 + 比较器排序 + 写回文件），下面分子目录，见下 | 1 |
-| `订正` | 11-07 | 第五周补漏练习（集合排序那两块），不分子目录，见下 | 2 |
+| `订正` | 11-07 | 第五周补漏练习 A 组（集合排序）+ 11-12 三道加练，不分子目录，见下 | 5 |
 
 ### `week_5\Day29总\` 内部
 
@@ -163,6 +180,7 @@ archive\
 |---|---|---|
 | `Day29-0` | `Day29.java` | 泛型方法 `<T> void printAll(ArrayList<T>)`、可变参数 `int... nums` |
 | `Day29-1` | `Day29A.java` | 通用小工具综合题（printAll / last / count / sum / average，12 行输出验收） |
+| `check` | `checkD29.java` / `checkD29_A.java` | 11-12 补漏：第 23 题原题（`printAll(T... items)` + `first(List<T>)`，`List.of` 是照抄）一次过；加练「泛型工具箱」（`last` / `join` / `findIndex`）掉在 `join` 没用 `T...` 和 8 行全缺前缀上，但 `findIndex` 的 `==` 陷阱是他自己跑出来、自己改成 `equals` 的（`:30` 注释「看到输出错误改用equals」）。综合判 **B** |
 
 ### `week_5\Day30总\` 内部
 
@@ -208,6 +226,9 @@ archive\
 |---|---|
 | `Arr.java` | 补漏 A1「排行榜」：`HashMap` 计数 → `new ArrayList<>(count.keySet())` → `Collections.sort` 两段比较器（`int d1 = count.get(b) - count.get(a); if (d1 != 0) return d1; return a.compareTo(b);`）→ 带序号打印。实测输出 `the 4 / mat 3 / on 2 / sat 2 / cat 1 / dog 1 / elephant 1`，四条判据全过。**踩过的坑**：`new ArrayList<>(count.keySet())` 最初写在所有 `put` 之前，拿到空名单，排完还是 `[]`，`get(0)` 直接 `IndexOutOfBoundsException: Index 0 out of bounds for length 0`——这是他**第三次**同款「东西放错流程位置」的错（前两次：Day32A 计数器放进 `while`、Day34 `a1s` 建在 `while` 之前）。循环上界也从 `count.size()` 改成 `ar.size()`（循环哪个就用哪个的 size） |
 | `CityRank.java` | 补漏 A3「城市销量榜」：同一套结构换数据（`shanghai 12 / beijing 12 / zhengzhou 7 / wuhan 7 / xian 3 / chengdu 3`，**三组全是并列**，专治「只写一条规则」），比较器两段写对。**踩过的坑**：排序六行全对，但序号硬编码成 `"1. "`，打出六个 `1.`——这是他**第三次「算对了、报告错了」**（前两次：practice1 打印被减到 0 的 `n`、Day32B 打印一堆 `False`）。改成 `(i + 1) + ". "` 后正确 |
+| `checkD29.java` | 补漏 A2「按长度排」：`Collections.sort` 比较器只比长度（`b.length() - a.length()`），**同长度没排**——`stream/reader`、`java/file` 全是原数组顺序（稳定排序在比出 0 时不动）。当时我那 4 条判据全过，是我判据漏了二级。指出后他补 `if (d1 == 0) return a.compareTo(b);`，而且是**反过来写**（`d1 == 0` 提前返回），逻辑等价。实测 `[buffered, reader, stream, file, java, io, a]`。判 **B** |
+| `checkD29_A.java` | 加练「成绩单排名」：排序 + 名次 + 最高分人数。比较器先写 `Integer.parseInt(b.substring(3))`——**按位置切**，名字三个字就炸（实测 `"欧阳修:90".substring(3)` = `:90`），改成 `b.substring(b.indexOf(":") + 1)` 才对；`max` 方法用三个 for 求最大值和人数。他第一版还把分数预先塞进平行数组 `int[] a2` 想按下标配对，`a2` 不随 `a1` 交换 → 压根没跑起来。实测 7 行排行榜 + `最高分 100 分，共 1 人`。判 **B** |
+| `checkD29_B.java` | 「两班名单」（HashSet 交集/差集/计数）草稿，**空壳未做**——只有 `clts` 方法签名和空的 main，随批留档 |
 
 ---
 
