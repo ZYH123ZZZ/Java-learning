@@ -16,4 +16,9 @@ public class checkD32 {
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) {
+        copy("C:\\Users\\Administrator\\Desktop\\测试文件夹\\Snipaste_2026-11-11_14-13-53.png",
+                "C:\\Users\\Administrator\\Desktop\\测试文件夹\\2\\copy.png");
+    }
 }

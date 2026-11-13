@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   49 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-├── week_5\   第五周  Day29 ~ Day34    7 个目录   31 个文件
+├── week_5\   第五周  Day29 ~ Day34    7 个目录   34 个文件
 └── week_6\   第六周  Day36 ~ Day39    5 个目录   14 个文件
 ```
 
@@ -63,7 +63,7 @@ archive\
 
 | 21 | Day26 异常（try / catch / finally + 自定义异常） | `week_4\Day26总\check\` | `checkD26.java`、`AgeException_D26.java`（主线原题）；`checkD26_A.java`、`MyArithmeticException.java`（A 题除法计算器）；`checkD26_B.java`、`BeyondnumException.java`（B 题成绩校验器） |
 | 22 | Day27 递归（出口判断 · 打印型 / 布尔型 / 计数型） | `week_4\Day27总\check\` | `checkD27.java`（主线原题 `fact` / `fib` / `sum`）、`checkD27_B.java` + `checkD27_B2.java`（`maxOf` 两版）、`checkD27_C.java`（`printReverse` 倒序打印）、`checkD27_D.java`（`contains` 布尔型）、`checkD27_E.java`（`countTarget` 计数型） |
-| 26 | Day32 字节流复制（`copy` + try-with-resources） | `week_5\Day32总\check\` | `checkD32.java`（11-13 补课，判 **A**） |
+| 26 | Day32 字节流复制（`copy` + try-with-resources） | `week_5\Day32总\check\` | `checkD32.java`（11-13 补课，判 **C**——读写四行是给的）、`checkD32_B.java`（逐块比两文件，8 版判 C）、`checkD32_C.java`（多文件合并，判 B） |
 
 **为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
 
@@ -170,7 +170,7 @@ archive\
 | `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 4 |
 | `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 9 |
 | `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 8 |
-| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 3 |
+| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 6 |
 | `Day33总` | 11-04 | 字符流 InputStreamReader / OutputStreamWriter / BufferedReader，下面分子目录，见下 | 2 |
 | `Day34总` | 11-05 | 综合：词频统计器 v3（HashMap 计数 + 比较器排序 + 写回文件），下面分子目录，见下 | 1 |
 | `订正` | 11-07 | 第五周补漏练习 A 组（集合排序）+ 11-12 三道加练，不分子目录，见下 | 5 |
@@ -204,7 +204,7 @@ archive\
 | 子目录 | 文件 | 内容 |
 |---|---|---|
 | `Day32-0` | `Day32.java` | 字节流：`write(int)` 只取低 8 位、`write(byte[])` 写一块、`FileOutputStream(..., true)` 追加对比默认清空；`read()` 逐字节递进、`-1` 判结尾、`(char) b` 转字符；两处 `try-with-resources`；`copy(from, to)` 用 1024 块 + `write(buf, 0, n)`，实测复制 30,784,597 字节的 flac，源与目标字节数一字节不差 |
-| `check` | `checkD32.java` | 11-13 查漏第 26 题：`copy(String from, String to)` 用 1024 块循环 + `write(buf, 0, n)`，`try-with-resources` 已写对、补上中间读写四行。实测复制 546,985 字节照片 → 目标 546,985 字节、逐字节相等、图片能打开；边界 0/1/1024/1025/1400/2048/100000 字节七组全等。判 **A** |
+| `check` | `checkD32.java` / `checkD32_B.java` / `checkD32_C.java` | 11-13 查漏第 26 题 + 两道加练（3 个文件）。**① `checkD32`**：`copy(String from, String to)` 用 1024 块循环 + `write(buf, 0, n)`，`try-with-resources` 已写对、补上中间读写四行。实测复制 546,985 字节照片 → 逐字节相等、图片能打开；边界 0/1/1024/1025/1400/2048/100000 七组全等。**判 C**（四行读写是从零讲的，他只补了 `main` 和路径）。**② `checkD32_B`**：`isCompareTrue` 逐块比两个文件，8 个版本、6 次提示才过 11/11（`bufA.equals(bufB)` 比引用、`read` 写进 `for`、`nA != nB` 放错层三次）；独立想出来的只有「`i` 从 0 走到 `nA`」。**判 C**。**③ `checkD32_C`**：`method1(String[] paths, String outPath)` 多文件首尾相接，第一版两个流位置就放对了（`out` 在 `for` 外、`in` 在 `for` 内），但 `while` 里少了 `n = in.read(buf)` → 死循环写出 30,765,098 字节；补上后再把输入流挪进 `try(...)`，8/8 全过（含隐藏判据「覆盖已有内容」）。**判 B** |
 | `Day32-1` | `Day32A.java` | 文件备份器综合题（11-03 下午，题目给出、含三处预警坑）：`backup(String fromDir, String toDir, String suffix)` 拆成方法，目标目录不存在先 `mkdir`；遍历后 `isFile() && endsWith(suffix)` 才走复制分支，`isDirectory` 算子目录、`!endsWith` 算后缀不符；双层 `try-with-resources` 内 2048 块循环 `write(buf, 0, n)`；四个计数器在 `while` 外（复制完成后才加）。实测 a.txt/b.txt/c.txt 三文件 `cmp` 逐字节一致，汇总 `共 3 个文件, 3534 字节`。**已知瑕疵（未改，不影响功能）**：L44-49 的 `OK/False` 打印写在循环末尾而非复制分支内，导致 `d.java`、`sub` 两个跳过项也各打一行 `False`，与题目「跳过的只记个数不打印」有出入 |
 
 ### `week_5\Day33总\` 内部
