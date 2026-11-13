@@ -63,6 +63,7 @@ archive\
 
 | 21 | Day26 异常（try / catch / finally + 自定义异常） | `week_4\Day26总\check\` | `checkD26.java`、`AgeException_D26.java`（主线原题）；`checkD26_A.java`、`MyArithmeticException.java`（A 题除法计算器）；`checkD26_B.java`、`BeyondnumException.java`（B 题成绩校验器） |
 | 22 | Day27 递归（出口判断 · 打印型 / 布尔型 / 计数型） | `week_4\Day27总\check\` | `checkD27.java`（主线原题 `fact` / `fib` / `sum`）、`checkD27_B.java` + `checkD27_B2.java`（`maxOf` 两版）、`checkD27_C.java`（`printReverse` 倒序打印）、`checkD27_D.java`（`contains` 布尔型）、`checkD27_E.java`（`countTarget` 计数型） |
+| 26 | Day32 字节流复制（`copy` + try-with-resources） | `week_5\Day32总\check\` | `checkD32.java`（11-13 补课，判 **A**） |
 
 **为什么第 18 题（Day23）放在 `Day24` 目录里：** week_4 没有单独的 Day23 目录，当时 Day23-24 是一起做的（`Day24` 里的 `Animal` / `Dog` / `Cat` / `Bird` 就是那两天的）。文件名 `checkD23` 自带区分。
 
@@ -76,7 +77,7 @@ archive\
 
 **11-12 补课第五批**（题号 22）也通过：Day27 递归。主线原题 `checkD27.java` 交上来时 `fib` 是 `return 0`、`sum` 出口 `if (i <= 0) return arr[i];`，当天判 **C** —— 理由是 `sum` 出口改了小半夜：`<=` → `==` → `>` → `>=` 四次全在挪数字，没有一次在问「出口到底判断什么」。补三次加练后立住：`printReverse`（`void` 递归怎么停：`if (i < 0) return;`，顺带讲清 `i == 0` 会漏掉最后一格）、`contains`（**三版才对**：先写 `i <= 0` + `arr.length == 1` 特判，改 `length != 0` 仍挂 2 条，最后回到 `i < 0 || i >= arr.length` —— 正确的三行他自己先写过又注释掉了，这是当晚第 7 次「改边界不动机制」）、`countTarget`（一次写对，判 **A**）。
 
-**第二轮补课结束：32 道里题号 1~22 全部通过，`test\src\` 已清空。** 剩下的题号 23~32（第五、六周内容）等主线推到再考。
+**第二轮补课结束：32 道里题号 1~22 全部通过，`test\src\` 已清空。** 剩下题号 23~32（第五、六周内容）等主线推到再考；到 11-13 为止 23~26 已补（23 泛型判 B、24 迭代器判 B、25 File 判 B、26 字节流判 A）。
 
 ---
 
@@ -169,7 +170,7 @@ archive\
 | `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 4 |
 | `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 9 |
 | `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 8 |
-| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 2 |
+| `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 3 |
 | `Day33总` | 11-04 | 字符流 InputStreamReader / OutputStreamWriter / BufferedReader，下面分子目录，见下 | 2 |
 | `Day34总` | 11-05 | 综合：词频统计器 v3（HashMap 计数 + 比较器排序 + 写回文件），下面分子目录，见下 | 1 |
 | `订正` | 11-07 | 第五周补漏练习 A 组（集合排序）+ 11-12 三道加练，不分子目录，见下 | 5 |
@@ -203,6 +204,7 @@ archive\
 | 子目录 | 文件 | 内容 |
 |---|---|---|
 | `Day32-0` | `Day32.java` | 字节流：`write(int)` 只取低 8 位、`write(byte[])` 写一块、`FileOutputStream(..., true)` 追加对比默认清空；`read()` 逐字节递进、`-1` 判结尾、`(char) b` 转字符；两处 `try-with-resources`；`copy(from, to)` 用 1024 块 + `write(buf, 0, n)`，实测复制 30,784,597 字节的 flac，源与目标字节数一字节不差 |
+| `check` | `checkD32.java` | 11-13 查漏第 26 题：`copy(String from, String to)` 用 1024 块循环 + `write(buf, 0, n)`，`try-with-resources` 已写对、补上中间读写四行。实测复制 546,985 字节照片 → 目标 546,985 字节、逐字节相等、图片能打开；边界 0/1/1024/1025/1400/2048/100000 字节七组全等。判 **A** |
 | `Day32-1` | `Day32A.java` | 文件备份器综合题（11-03 下午，题目给出、含三处预警坑）：`backup(String fromDir, String toDir, String suffix)` 拆成方法，目标目录不存在先 `mkdir`；遍历后 `isFile() && endsWith(suffix)` 才走复制分支，`isDirectory` 算子目录、`!endsWith` 算后缀不符；双层 `try-with-resources` 内 2048 块循环 `write(buf, 0, n)`；四个计数器在 `while` 外（复制完成后才加）。实测 a.txt/b.txt/c.txt 三文件 `cmp` 逐字节一致，汇总 `共 3 个文件, 3534 字节`。**已知瑕疵（未改，不影响功能）**：L44-49 的 `OK/False` 打印写在循环末尾而非复制分支内，导致 `d.java`、`sub` 两个跳过项也各打一行 `False`，与题目「跳过的只记个数不打印」有出入 |
 
 ### `week_5\Day33总\` 内部
