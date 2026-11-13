@@ -25,7 +25,7 @@ archive\
 ├── week_2\   第二周  Day8  ~ Day14     9 个目录   49 个文件
 ├── week_3\   第三周  Day15 ~ Day21     8 个目录   45 个文件
 ├── week_4\   第四周  Day22 ~ Day28     7 个目录   44 个文件
-├── week_5\   第五周  Day29 ~ Day34    7 个目录   19 个文件
+├── week_5\   第五周  Day29 ~ Day34    7 个目录   31 个文件
 └── week_6\   第六周  Day36 ~ Day39    5 个目录   14 个文件
 ```
 
@@ -167,8 +167,8 @@ archive\
 | 目录 | 日期 | 内容 | 文件数 |
 |---|---|---|---|
 | `Day29总` | 10-31 | 泛型 + 可变参数，下面分子目录，见下 | 4 |
-| `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 3 |
-| `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 2 |
+| `Day30总` | 11-01 | 集合体系 + 迭代器，下面分子目录，见下 | 9 |
+| `Day31总` | 11-02 | File 文件操作（元信息），下面分子目录，见下 | 8 |
 | `Day32总` | 11-03 | 字节流 FileInputStream / FileOutputStream，下面分子目录，见下 | 2 |
 | `Day33总` | 11-04 | 字符流 InputStreamReader / OutputStreamWriter / BufferedReader，下面分子目录，见下 | 2 |
 | `Day34总` | 11-05 | 综合：词频统计器 v3（HashMap 计数 + 比较器排序 + 写回文件），下面分子目录，见下 | 1 |
@@ -188,6 +188,7 @@ archive\
 |---|---|---|
 | `Day30-0` | `Day30.java` | `Iterator` 删元素练习（抽奖池 `3 47 12 88 12 5 12 60` → `[47, 88, 60]`）；内含注释保留的倒序 for 替代方案 |
 | `Day30-1` | `Day30A.java` + `Member.java` | 社团报名表综合题（去重按学号 / 迭代器删无效 / HashMap 数报名次数）；三组数据骨干逻辑全对 |
+| `check` | 6 个文件 | 11-12 迭代器加练六道：`checkD30`（`contains` 去重 + Iterator 删长度<3）、`checkD30_A`（相邻去重 + 按序号删偶数位）、`checkD30_BC`（就地相邻去重 `last=s` + 删全部并计数）、`checkD30_D`（`limitRuns` 每段最多留 n 个，8/8，判 C——出口挪 4 次边界）、`checkD30_E`（删首尾，7/7，判 B——守卫只在进入时查一次）、`checkD30_F`（`rotateLeft` 左移 k 位，10/10，判 B——三轮提示才改对） |
 
 ### `week_5\Day31总\` 内部
 
@@ -195,6 +196,7 @@ archive\
 |---|---|---|
 | `Day31-0` | `Day31.java` | `File` 元信息：`listFiles()` 判 `null` 后 `return`、`mkdir`/`createNewFile`、`getName()+endsWith(".java")` 筛文件、计数器数 `.java` 个数、`delete()` 返回值验证（`if (note.delete())` 而不是先删再 println） |
 | `Day31-1` | `Day31B.java` | 目录清单器综合题（11-03 凌晨写完，独立完成）：`listDir(String)` 拆成方法，三个前置守卫（不存在 / 不是目录 / `listFiles()` 返回 `null`）逐个 `return`，`isFile` 与 `isDirectory` 两个分支分别打「名字 类型 大小」，末行汇总 `共 N 项,其中文件 X 个,目录 Y 个`。五个调用把三条守卫 + 两个分类分支全跑过 |
+| `check` | 6 个文件 | 11-13 File 加练六道：`checkD31`（`info` 元信息 + 列子项，判 B——`isFile()` 当「不存在」）、`checkD31_A`（`mkdirs` + 建删文件 + 数项，判 B——`createNewFile` 当建目录）、`checkD31_B`（递归数 `.java` 240 个，判 B——并列 `if` 改 `else if` 已堵坑）、`checkD31_C`（`deleteAll` 删整棵树 5/5，判 B）、`checkD31_D`（目录树缩进 + 三计数 + 汇总，2/5——没排序）、`checkD31_E`（递归搜索文件名，判 B——`static List` 没 `new`、递归被包在 `if` 里、每文件加两次；最后卡在「结果怎么交出去」，归档版仍返回 `List` 不打印） |
 
 ### `week_5\Day32总\` 内部
 
